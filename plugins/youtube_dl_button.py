@@ -145,8 +145,8 @@ async def youtube_dl_call_back(bot, update):
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
     t_response = stdout.decode().strip()
-    # logger.info(e_response)
-    # logger.info(t_response)
+     logger.info(e_response)
+     logger.info(t_response)
     ad_string_to_replace = "please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output."
     if e_response and ad_string_to_replace in e_response:
         error_message = e_response.replace(ad_string_to_replace, "")
@@ -250,9 +250,9 @@ async def youtube_dl_call_back(bot, update):
                     caption=description,
                     parse_mode="HTML",
                     duration=duration,
-                    # performer=response_json["uploader"],
-                    # title=response_json["title"],
-                    # reply_markup=reply_markup,
+                     performer=response_json["uploader"],
+                     title=response_json["title"],
+                     reply_markup=reply_markup,
                     thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
@@ -269,7 +269,7 @@ async def youtube_dl_call_back(bot, update):
                     thumb=thumb_image_path,
                     caption=description,
                     parse_mode="HTML",
-                    # reply_markup=reply_markup,
+                    reply_markup=reply_markup,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
@@ -303,7 +303,7 @@ async def youtube_dl_call_back(bot, update):
                     width=width,
                     height=height,
                     supports_streaming=True,
-                    # reply_markup=reply_markup,
+                    reply_markup=reply_markup,
                     thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
