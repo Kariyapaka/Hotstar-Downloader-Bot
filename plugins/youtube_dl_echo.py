@@ -107,12 +107,12 @@ async def echo(bot, update):
     )
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
-    # logger.info(e_response)
+    logger.info(e_response)
     t_response = stdout.decode().strip()
-    # logger.info(t_response)
+    logger.info(t_response)
 
     if e_response and "nonnumeric port" not in e_response:
-        # logger.warn("Status : FAIL", exc.returncode, exc.output)
+        logger.warn("Status : FAIL", exc.returncode, exc.output)
         error_message = e_response.replace("please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output.", "")
         if "This video is only available for registered users." in error_message:
             error_message += Translation.SET_CUSTOM_USERNAME_PASSWORD
@@ -133,7 +133,7 @@ async def echo(bot, update):
             "/" + str(update.from_user.id) + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
-        # logger.info(response_json)
+        logger.info(response_json)
         inline_keyboard = []
         duration = None
         if "duration" in response_json:
@@ -256,7 +256,7 @@ async def echo(bot, update):
                     Config.DOWNLOAD_LOCATION + "/" +
                     str(update.from_user.id) + ".jpg",
                     Config.CHUNK_SIZE,
-                    None,  # bot,
+                    None,  bot,
                     Translation.DOWNLOAD_START,
                     update.message_id,
                     update.chat.id
